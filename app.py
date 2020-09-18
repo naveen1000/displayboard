@@ -7,6 +7,7 @@ from datetime import datetime
 from datetime import timedelta 
 from Adafruit_IO import Client
 from newsapi import NewsApiClient
+from proxy_requests import ProxyRequests
 
 newsapi = NewsApiClient(api_key='aa47b938d6034147888855be260a14e7')
 
@@ -47,7 +48,8 @@ def send_time():
             break
 
 def corona():
-    raw = requests.get('https://api.covid19india.org/data.json')
+    r = ProxyRequests('https://api.covid19india.org/data.json')
+    raw = r.get()
     cdata = raw.json()   
     statewise = cdata['statewise']
     msg = "Corona Data"
