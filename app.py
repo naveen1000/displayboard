@@ -4,6 +4,7 @@ import json
 import time
 import threading 
 from datetime import datetime
+from datetime import timedelta 
 from Adafruit_IO import Client
 from newsapi import NewsApiClient
 
@@ -34,7 +35,7 @@ def send_message(msg, chat_id):
 
 def send_time():
     while True:
-        now = datetime.now()
+        now = datetime.now() + timedelta(hours=5 ,minutes= 30)
         dt_string = now.strftime("%d/%m/%Y %H:%M")
         print("date and time =", dt_string)
         aio.send('message', dt_string)
