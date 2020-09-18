@@ -48,8 +48,7 @@ def send_time():
             break
 
 def corona():
-    r = ProxyRequests('https://api.covid19india.org/data.json')
-    raw = r.get()
+    raw = requests.get('https://api.covid19india.org/data.json')
     cdata = raw.json()   
     statewise = cdata['statewise']
     msg = "Corona Data"
@@ -74,7 +73,8 @@ def corona():
 def cricket(mid):
     while True:
         try:
-            source=requests.get('http://mapps.cricbuzz.com/cbzios/match/'+mid+'/leanback.json')
+            r = ProxyRequests('http://mapps.cricbuzz.com/cbzios/match/'+mid+'/leanback.json')
+            source = r.get()
             data = source.json()
             bat = data['bat_team']['name']
             bow = data['bow_team']['name']
