@@ -135,8 +135,10 @@ def news():
     for article in articles:
         #print(article['title'])
         news.append(article['title'])
-    for msg in news:
-        aio.send('message',msg)
+
+    l = len(news)
+    for count,msg in enumerate(news):
+        aio.send('message',str(count)+'/'+l+' ' +msg)
         print(msg)
         time.sleep(15)
         if stop_threads:
