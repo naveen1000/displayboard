@@ -74,9 +74,9 @@ def cricket(mid):
     while True:
         try:
             r = ProxyRequests('http://mapps.cricbuzz.com/cbzios/match/'+mid+'/leanback.json')
-            source = r.get()
-            data = source.json()
-            print(data)
+            r.get()
+            a=str(r)
+            data=json.loads(a)
             bat = data['bat_team']['name']
             bow = data['bow_team']['name']
             score=int(data["comm_lines"][0]["score"])
